@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01aa23587fdea83449a42015250bf121, type: 3}
+  m_Name: Yohan_Spica
+  m_EditorClassIdentifier: Assembly-CSharp::PolitikusData
+  id: 0
+  displayName: Yohan Spica
+  lobby: 78
+  pembengkakanDana: 42
+  kepercayaanPublik: 68
+  penyambungan: 76
+  deskripsi: Tokoh yang dikenal pandai menjaga banyak pihak tetap berada di satu
+    meja. Tidak selalu menjadi orang yang paling mencolok, tetapi kehadirannya sering
+    membuat urusan yang tadinya terasa sulit menjadi sedikit lebih mudah.

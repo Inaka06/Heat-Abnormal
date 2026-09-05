@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3c4aa04cc33bb42b375bd75b1aad05, type: 3}
+  m_Name: Ev_Rakyat_4
+  m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
+  id: Ev. Rakyat 4
+  narasiPembuka: Event rakyat 4 terjadi di Nagajaya.
+  ragamList:
+  - dialogText: Pertimbangkan kembali pembangunan waduk.
+    aftermathText: Alasan tinggal turun-temurun dipakai menolak pembangunan.
+    satisfactoryMin: 8
+    satisfactoryMax: 16
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 2
+    waktuPembangunanMax: 4
+    isInstantGameOver: 0
+  - dialogText: Warga harus beradaptasi dengan pemindahan.
+    aftermathText: Rakyat terbiasa memakai metafora yang tidak berhubungan.
+    satisfactoryMin: -12
+    satisfactoryMax: -5
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: -2
+    waktuPembangunanMax: -1
+    isInstantGameOver: 0

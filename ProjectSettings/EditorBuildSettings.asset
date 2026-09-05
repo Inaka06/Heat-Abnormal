@@ -6,8 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/_HeatAbnormal/Scenes/MainMenu.unity
+    guid: a3385a8cff57ec64286a6882ca719334
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/OpeningNarration.unity
+    guid: 637c715c1f6c7f94599589d8872e6065
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/PembangkitSelect.unity
+    guid: e8848dee0fedef2498a38eb51a63156f
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/KontraktorSelect.unity
+    guid: 64a48723ffafc10439783fdce866f1fb
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/PolitikusSelect.unity
+    guid: 3cad1ce40e668724a86a509b989ebf77
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/PembangunanLoop.unity
+    guid: 04bc00c9657249c40b35f54386a31953
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/Ending_Win.unity
+    guid: 25cb87cbbc374b847b19c7cf335cf2aa
+  - enabled: 1
+    path: Assets/_HeatAbnormal/Scenes/Ending_GameOver.unity
+    guid: 7a1922181d6a154478d0a7be0a9b49c4
   m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

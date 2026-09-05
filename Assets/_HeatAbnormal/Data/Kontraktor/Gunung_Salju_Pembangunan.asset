@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3cd4ecb7802ae949a51da147f9ca44f, type: 3}
+  m_Name: Gunung_Salju_Pembangunan
+  m_EditorClassIdentifier: Assembly-CSharp::KontraktorData
+  id: 2
+  displayName: Gunung Salju Pembangunan
+  kekokohan: 72
+  pembengkakanDana: 32
+  keselamatanKerja: 91
+  deskripsi: Bekerja dengan pendekatan yang lebih hati-hati dan teratur. Pekerjaan
+    mereka mungkin tidak selalu menjadi yang tercepat, tetapi mereka tampak tidak
+    terlalu suka meninggalkan persoalan yang belum dibereskan.

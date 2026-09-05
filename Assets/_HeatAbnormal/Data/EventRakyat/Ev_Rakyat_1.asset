@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3c4aa04cc33bb42b375bd75b1aad05, type: 3}
+  m_Name: Ev_Rakyat_1
+  m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
+  id: Ev. Rakyat 1
+  narasiPembuka: Event rakyat 1 terjadi di Nagajaya.
+  ragamList:
+  - dialogText: Normanfolk menuntut pertanggungjawaban kontraktor.
+    aftermathText: Keselamatan kerja menjadi sorotan publik.
+    satisfactoryMin: 10
+    satisfactoryMax: 18
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 1
+    waktuPembangunanMax: 2
+    isInstantGameOver: 0
+  - dialogText: Rang Rich membantah tuduhan.
+    aftermathText: Perusahaan tetap dianggap dermawan setelah memangkas dana K3.
+    satisfactoryMin: -18
+    satisfactoryMax: -10
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 0
+    waktuPembangunanMax: 0
+    isInstantGameOver: 0
+  - dialogText: Workman bersaksi bahwa peralatan keamanan ditolak mandor.
+    aftermathText: Aftermath pilihan diterapkan.
+    satisfactoryMin: 8
+    satisfactoryMax: 15
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 2
+    waktuPembangunanMax: 3
+    isInstantGameOver: 0
+  - dialogText: Pemilik saham membantah dan menyebut kontraktor lolos audit.
+    aftermathText: Aftermath pilihan diterapkan.
+    satisfactoryMin: -25
+    satisfactoryMax: -15
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: -1
+    waktuPembangunanMax: 0
+    isInstantGameOver: 0
+  - dialogText: Politikus berjanji mendatangi pihak bertanggung jawab sambil berkampanye.
+    aftermathText: Aftermath pilihan diterapkan.
+    satisfactoryMin: 3
+    satisfactoryMax: 8
+    kekuatanPolitikMin: 3
+    kekuatanPolitikMax: 8
+    waktuPembangunanMin: 1
+    waktuPembangunanMax: 2
+    isInstantGameOver: 0
+  - dialogText: Analis independen mengecilkan masalah dan menjual saham.
+    aftermathText: Aftermath pilihan diterapkan.
+    satisfactoryMin: -12
+    satisfactoryMax: -6
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: -1
+    waktuPembangunanMax: 0
+    isInstantGameOver: 0

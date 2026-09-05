@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3cd4ecb7802ae949a51da147f9ca44f, type: 3}
+  m_Name: Dashi_Group
+  m_EditorClassIdentifier: Assembly-CSharp::KontraktorData
+  id: 1
+  displayName: Dashi Group
+  kekokohan: 42
+  pembengkakanDana: 72
+  keselamatanKerja: 48
+  deskripsi: Terkenal mampu membuat pekerjaan bergerak dengan cepat. Mereka tidak
+    suka proyek berlarut-larut, meskipun kecepatan tersebut terkadang harus dibayar
+    dengan perhatian ekstra selama proses pembangunan.

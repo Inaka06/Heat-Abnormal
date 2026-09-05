@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01aa23587fdea83449a42015250bf121, type: 3}
+  m_Name: Kris_Putri_Jayahadikusuma
+  m_EditorClassIdentifier: Assembly-CSharp::PolitikusData
+  id: 3
+  displayName: Kris Putri Jayahadikusuma
+  lobby: 74
+  pembengkakanDana: 76
+  kepercayaanPublik: 52
+  penyambungan: 94
+  deskripsi: Figur yang senang bergerak cepat dan tidak terlalu menyukai proses yang
+    bertele-tele. Ketika ia sudah berada di belakang sebuah proyek, beberapa urusan
+    dapat didorong dengan jauh lebih agresif.

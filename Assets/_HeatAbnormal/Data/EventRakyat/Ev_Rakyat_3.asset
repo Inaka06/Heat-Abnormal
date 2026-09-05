@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3c4aa04cc33bb42b375bd75b1aad05, type: 3}
+  m_Name: Ev_Rakyat_3
+  m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
+  id: Ev. Rakyat 3
+  narasiPembuka: Event rakyat 3 terjadi di Nagajaya.
+  ragamList:
+  - dialogText: Bangun PLTS dengan membuka sebagian hutan.
+    aftermathText: Warga terbiasa bertetangga dengan hewan.
+    satisfactoryMin: -8
+    satisfactoryMax: 4
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: -2
+    waktuPembangunanMax: -1
+    isInstantGameOver: 0
+  - dialogText: Pasang panel surya di rumah warga.
+    aftermathText: Banyak gedung kesulitan menyediakan listrik.
+    satisfactoryMin: 3
+    satisfactoryMax: 10
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 1
+    waktuPembangunanMax: 2
+    isInstantGameOver: 0
+  - dialogText: Lanjutkan eksploitasi minyak.
+    aftermathText: Setiap jengkal tanah diisi tambang minyak.
+    satisfactoryMin: -4
+    satisfactoryMax: 3
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 2
+    waktuPembangunanMax: 4
+    isInstantGameOver: 0

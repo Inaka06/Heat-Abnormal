@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3c4aa04cc33bb42b375bd75b1aad05, type: 3}
+  m_Name: Ev_Rakyat_5
+  m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
+  id: Ev. Rakyat 5
+  narasiPembuka: Event rakyat 5 terjadi di Nagajaya.
+  ragamList:
+  - dialogText: Hentikan proyek demi melindungi burung.
+    aftermathText: Pesawat dilarang terbang di atas Nagajaya.
+    satisfactoryMin: 7
+    satisfactoryMax: 15
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 2
+    waktuPembangunanMax: 4
+    isInstantGameOver: 0
+  - dialogText: Hentikan proyek dan beralih ke gas alam.
+    aftermathText: Semua aspek kehidupan menggunakan gas alam.
+    satisfactoryMin: 0
+    satisfactoryMax: 0
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: 0
+    waktuPembangunanMax: 0
+    isInstantGameOver: 1
+  - dialogText: Burung harus berevolusi mengikuti manusia.
+    aftermathText: Ayam menjadi satu-satunya unggas yang hidup.
+    satisfactoryMin: -14
+    satisfactoryMax: -6
+    kekuatanPolitikMin: 0
+    kekuatanPolitikMax: 0
+    waktuPembangunanMin: -1
+    waktuPembangunanMax: 0
+    isInstantGameOver: 0
