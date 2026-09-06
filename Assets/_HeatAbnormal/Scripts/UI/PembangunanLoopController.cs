@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.UI;
+using System;
 
 public class PembangunanLoopController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PembangunanLoopController : MonoBehaviour
     private Text politicalRepresentativesText;
     private Text peopleEventTimerText;
     private Text connectionRequestStatusText;
+    private HeatAbnormalAudioFeedback audioFeedback;
     private GameObject naturalEventPopup;
     private Text naturalEventPopupText;
     private GameObject peopleEventModal;
@@ -31,31 +33,32 @@ public class PembangunanLoopController : MonoBehaviour
     private bool connectionRequestPending;
     private bool lastConnectionRequestSucceeded;
     private float peopleEventChoiceSeconds = 10f;
+    private float peopleEventChoiceDeadline;
     private int lastBudgetRequestPeriod = -1;
     private const float SmallRequestPercent = 0.10f;
     private const float MediumRequestPercent = 0.20f;
     private const float LargeRequestPercent = 0.35f;
     private EventRakyatData pendingPeopleEvent;
+    private bool blockingNaturalPopup;
+    public event Action OnBlockingNaturalEventDismissed;
+    public event Action OnPeopleEventDismissed;
 
     private void Awake()
     {
         if (gameClock == null) gameClock = GetComponentInChildren<GameClock>();
-        var plant = GameSession.State.SelectedPembangkit as PembangkitData;
+        var plant = GameSession.State.SelectedPembangkit;
         if (plant == null)
         {
             Debug.LogError("PembangunanLoop requires a selected PembangkitData.");
             targetPeriods = 1;
         }
         else targetPeriods = Mathf.Max(1, plant.baseLamaPeriode);
+        audioFeedback = gameObject.AddComponent<HeatAbnormalAudioFeedback>();
         BuildInterface(plant);
     }
 
     private void OnEnable()
     {
-        if (gameClock != null) gameClock.OnPeriodElapsed += HandlePeriodElapsed;
-        if (naturalEventSystem != null) naturalEventSystem.OnNaturalEventTriggered += HandleNaturalEvent;
-        if (peopleEventSystem != null) peopleEventSystem.OnPeopleEventTriggered += HandlePeopleEvent;
-        if (budgetOverrunSystem != null) budgetOverrunSystem.OnBudgetOverrun += HandleBudgetOverrun;
         GameStateEvents.OnDanaChanged += HandleDanaChanged;
         GameStateEvents.OnKepuasanChanged += HandleCitizenChanged;
         GameStateEvents.OnKekuatanPolitikChanged += HandlePoliticsChanged;
@@ -65,22 +68,18 @@ public class PembangunanLoopController : MonoBehaviour
 
     private void Update()
     {
-        if (timerText == null || gameClock == null) return;
-        timerText.text = gameClock.IsPaused ? "Timer dijeda" : "Periode berikutnya: " + Mathf.CeilToInt(gameClock.SecondsUntilNextPeriod) + " dtk";
-        if (peopleEventModal != null && peopleEventModal.activeSelf && peopleEventTimerText != null)
+        if (timerText != null && gameClock != null)
+            timerText.text = gameClock.IsPaused ? "Timer dijeda" : "Periode berikutnya: " + Mathf.CeilToInt(gameClock.SecondsUntilNextPeriod) + " dtk";
+        if (peopleEventModal != null && peopleEventModal.activeSelf)
         {
-            peopleEventTimerText.text = "Pilih respon: " + Mathf.CeilToInt(peopleEventChoiceSeconds) + " dtk";
-            peopleEventChoiceSeconds -= Time.unscaledDeltaTime;
+            peopleEventChoiceSeconds = Mathf.Max(0f, peopleEventChoiceDeadline - Time.realtimeSinceStartup);
+            if (peopleEventTimerText != null) peopleEventTimerText.text = "Pilih respon: " + Mathf.CeilToInt(peopleEventChoiceSeconds) + " dtk";
             if (peopleEventChoiceSeconds <= 0f) AutoChooseWorstPeopleOption();
         }
     }
 
     private void OnDisable()
     {
-        if (gameClock != null) gameClock.OnPeriodElapsed -= HandlePeriodElapsed;
-        if (naturalEventSystem != null) naturalEventSystem.OnNaturalEventTriggered -= HandleNaturalEvent;
-        if (peopleEventSystem != null) peopleEventSystem.OnPeopleEventTriggered -= HandlePeopleEvent;
-        if (budgetOverrunSystem != null) budgetOverrunSystem.OnBudgetOverrun -= HandleBudgetOverrun;
         GameStateEvents.OnDanaChanged -= HandleDanaChanged;
         GameStateEvents.OnKepuasanChanged -= HandleCitizenChanged;
         GameStateEvents.OnKekuatanPolitikChanged -= HandlePoliticsChanged;
@@ -88,10 +87,11 @@ public class PembangunanLoopController : MonoBehaviour
         GameStateEvents.OnGameOver -= HandleGameOver;
     }
 
-    private void HandlePeriodElapsed()
+    public void AdvanceProgressOnly()
     {
         if (gameOverTriggered) return;
         elapsedPeriods = Mathf.Min(elapsedPeriods + 1, targetPeriods);
+        GameSession.State.PeriodeTerpakai = elapsedPeriods;
         GameSession.State.ProgressPembangunanPeriode = (float)elapsedPeriods / targetPeriods;
         GameStateEvents.RaiseProgressChanged(GameSession.State.ProgressPembangunanPeriode);
         progressBar.value = GameSession.State.ProgressPembangunanPeriode;
@@ -125,7 +125,7 @@ public class PembangunanLoopController : MonoBehaviour
         }
     }
 
-    private void HandleNaturalEvent(EventAlamData eventData)
+    public void ReceiveNaturalEvent(EventAlamData eventData)
     {
         if (eventData == null || gameOverTriggered) return;
         if (gameClock != null) gameClock.StopCurrentAdvance();
@@ -139,7 +139,7 @@ public class PembangunanLoopController : MonoBehaviour
             return;
         }
 
-        var contractor = GameSession.State.SelectedKontraktor as KontraktorData;
+        var contractor = GameSession.State.SelectedKontraktor;
         if (contractor == null)
         {
             Debug.LogError("Natural event requires a selected KontraktorData to calculate damage.");
@@ -150,17 +150,20 @@ public class PembangunanLoopController : MonoBehaviour
         var resistanceFactor = SelectedStatsSystem.NaturalResistance(contractor);
         var damage = Mathf.RoundToInt(GameFormulas.DampakEventAlam(baseDamage, resistanceFactor));
         elapsedPeriods = Mathf.Max(0, elapsedPeriods - damage);
+        GameSession.State.PeriodeTerpakai = elapsedPeriods;
         GameSession.State.ProgressPembangunanPeriode = (float)elapsedPeriods / targetPeriods;
         GameStateEvents.RaiseProgressChanged(GameSession.State.ProgressPembangunanPeriode);
         progressBar.value = GameSession.State.ProgressPembangunanPeriode;
         progressText.text = Mathf.RoundToInt(progressBar.value * 100f) + "%";
         periodText.text = "Periode pembangunan: " + elapsedPeriods + " / " + targetPeriods;
+        audioFeedback.PlayWarning();
         ShowNaturalEventPopup(eventData.namaEvent, eventData.narasi + "\nKemunduran: " + damage + " periode");
     }
 
-    private void ShowNaturalEventPopup(string eventName, string narrative)
+    private void ShowNaturalEventPopup(string eventName, string narrative, bool blocking = true)
     {
         if (naturalEventPopup == null || naturalEventPopupText == null) return;
+        blockingNaturalPopup = blocking;
         naturalEventPopupText.text = eventName + "\n\n" + narrative;
         naturalEventPopup.SetActive(true);
         CancelInvoke(nameof(HideNaturalEventPopup));
@@ -170,15 +173,22 @@ public class PembangunanLoopController : MonoBehaviour
     private void HideNaturalEventPopup()
     {
         if (naturalEventPopup != null) naturalEventPopup.SetActive(false);
+        if (blockingNaturalPopup)
+        {
+            blockingNaturalPopup = false;
+            var callback = OnBlockingNaturalEventDismissed;
+            if (callback != null) callback.Invoke();
+        }
     }
 
-    private void HandlePeopleEvent(EventRakyatData eventData)
+    public void ReceivePeopleEvent(EventRakyatData eventData)
     {
         if (eventData == null || gameOverTriggered || peopleEventModal == null) return;
         if (gameClock != null) gameClock.StopCurrentAdvance();
         gameClock.Pause();
         pendingPeopleEvent = eventData;
         peopleEventChoiceSeconds = 10f;
+        peopleEventChoiceDeadline = Time.realtimeSinceStartup + peopleEventChoiceSeconds;
         var message = peopleEventModal.transform.Find("Message").GetComponent<Text>();
         message.text = eventData.id + "\n\n" + eventData.narasiPembuka;
         var options = peopleEventModal.transform.Find("Options");
@@ -198,9 +208,10 @@ public class PembangunanLoopController : MonoBehaviour
         peopleEventModal.SetActive(true);
     }
 
-    private void HandleBudgetOverrun(float amount)
+    public void ReceiveBudgetOverrun(float amount)
     {
-        ShowNaturalEventPopup("Pembengkakan Dana", "Terjadi pembengkakan dana sebesar " + amount.ToString("N0") + " Gajayan.");
+        audioFeedback.PlayWarning();
+        ShowNaturalEventPopup("Pembengkakan Dana", "Terjadi pembengkakan dana sebesar " + amount.ToString("N0") + " Gajayan.", false);
     }
 
     private void HandleGameOver(GameOverReason reason)
@@ -221,7 +232,7 @@ public class PembangunanLoopController : MonoBehaviour
         if (option.isInstantGameOver)
         {
             gameOverTriggered = true;
-            var reason = eventData.id.Contains("2") ? GameOverReason.KembaliKeBatuBara : GameOverReason.BeralihKeGasAlam;
+            var reason = option.gameOverReason == GameOverReason.None ? GameOverReason.Other : option.gameOverReason;
             GameSession.State.MarkGameOver(reason);
             GameStateEvents.RaiseGameOver(reason);
             gameClock.Pause();
@@ -245,6 +256,7 @@ public class PembangunanLoopController : MonoBehaviour
         state.KepuasanRakyat = Mathf.RoundToInt(GameFormulas.KepuasanPascaEvent(state.KepuasanRakyat, effectiveSatisfaction));
         state.KekuatanPolitik = Mathf.Clamp(state.KekuatanPolitik + politics, 0, 300);
         elapsedPeriods = Mathf.Clamp(elapsedPeriods + timeDelta, 0, targetPeriods);
+        state.PeriodeTerpakai = elapsedPeriods;
         state.ProgressPembangunanPeriode = (float)elapsedPeriods / targetPeriods;
         GameStateEvents.RaiseKepuasanChanged(state.KepuasanRakyat);
         GameStateEvents.RaiseKekuatanPolitikChanged(state.KekuatanPolitik);
@@ -259,7 +271,11 @@ public class PembangunanLoopController : MonoBehaviour
     {
         CancelInvoke(nameof(AutoChooseWorstPeopleOption));
         peopleEventModal.SetActive(false);
-        if (!gameOverTriggered) gameClock.Resume();
+        if (!gameOverTriggered)
+        {
+            var callback = OnPeopleEventDismissed;
+            if (callback != null) callback.Invoke();
+        }
     }
 
     private void AutoChooseWorstPeopleOption()
@@ -273,6 +289,9 @@ public class PembangunanLoopController : MonoBehaviour
             if (current.satisfactoryMin < worst.satisfactoryMin || (current.satisfactoryMin == worst.satisfactoryMin && current.waktuPembangunanMax > worst.waktuPembangunanMax)) worstIndex = i;
         }
         ApplyPeopleOption(pendingPeopleEvent, worstIndex);
+        // Timeout is the player's response: apply the bad outcome and close
+        // the blocking modal so the period resolver can continue.
+        if (peopleEventModal != null && peopleEventModal.activeSelf) DismissPeopleEvent();
     }
 
     private void HandleDanaChanged(int value) { if (fundsStatusText != null) fundsStatusText.text = "Dana: " + value.ToString("N0") + " Gj"; }
@@ -318,8 +337,8 @@ public class PembangunanLoopController : MonoBehaviour
         periodText = CreateText(canvas.transform, "PeriodText", "Periode pembangunan: 0 / " + targetPeriods, 24, new Vector2(.1f, .37f), new Vector2(.9f, .45f));
         timerText = CreateText(canvas.transform, "PeriodTimer", "Periode berikutnya: 30 dtk", 24, new Vector2(.28f, .30f), new Vector2(.72f, .36f));
         CreateButton(canvas.transform, "Speed1x", "1x", new Vector2(.70f, .28f), new Vector2(.78f, .35f), () => SetSpeed(1f));
-        CreateButton(canvas.transform, "Speed2x", "2x", new Vector2(.79f, .28f), new Vector2(.87f, .35f), () => SetSpeed(2f));
-        CreateButton(canvas.transform, "Speed3x", "3x", new Vector2(.88f, .28f), new Vector2(.96f, .35f), () => SetSpeed(3f));
+        CreateButton(canvas.transform, "Speed3x", "3x", new Vector2(.79f, .28f), new Vector2(.87f, .35f), () => SetSpeed(3f));
+        CreateButton(canvas.transform, "Speed9x", "9x", new Vector2(.88f, .28f), new Vector2(.96f, .35f), () => SetSpeed(9f));
         connectionButton = CreateButton(canvas.transform, "ConnectionButton", "Menu Penyambungan (terkunci)", new Vector2(.3f, .12f), new Vector2(.7f, .24f), RequestConnection);
         connectionButton.interactable = false;
         connectionStatusText = CreateText(canvas.transform, "ConnectionStatus", "Status: Pembangunan berlangsung", 20, new Vector2(.1f, .27f), new Vector2(.9f, .35f));
@@ -327,7 +346,8 @@ public class PembangunanLoopController : MonoBehaviour
         var politicalPanel = new GameObject("PoliticalActions", typeof(RectTransform), typeof(Image)); politicalPanel.transform.SetParent(canvas.transform, false);
         var politicalRect = politicalPanel.GetComponent<RectTransform>(); politicalRect.anchorMin = new Vector2(.72f, .58f); politicalRect.anchorMax = new Vector2(.96f, .88f); politicalRect.offsetMin = politicalRect.offsetMax = Vector2.zero; politicalPanel.GetComponent<Image>().color = new Color(.08f, .12f, .3f);
         CreateText(politicalPanel.transform, "Header", "AKSI POLITIK", 22, new Vector2(.05f, .82f), new Vector2(.95f, .98f));
-        politicalRepresentativesText = CreateText(politicalPanel.transform, "Representatives", "Politikus aktif: -", 14, new Vector2(.05f, .74f), new Vector2(.95f, .82f));
+        politicalRepresentativesText = CreateText(politicalPanel.transform, "Representatives", "Politikus aktif: -", 14, new Vector2(.05f, .72f), new Vector2(.95f, .82f));
+        CreateText(politicalPanel.transform, "LobbyRule", "Peluang lobby memakai total lobby politikus", 11, new Vector2(.05f, .67f), new Vector2(.95f, .73f));
         var plantCost = plant == null ? 0 : plant.biayaDipilih;
         CreateButton(politicalPanel.transform, "RequestSmall", "Sedikit (+" + Mathf.RoundToInt(plantCost * SmallRequestPercent).ToString("N0") + ")", new Vector2(.08f, .50f), new Vector2(.92f, .66f), () => RequestBudget(0));
         CreateButton(politicalPanel.transform, "RequestMedium", "Sedang (+" + Mathf.RoundToInt(plantCost * MediumRequestPercent).ToString("N0") + ")", new Vector2(.08f, .30f), new Vector2(.92f, .46f), () => RequestBudget(1));
@@ -336,7 +356,7 @@ public class PembangunanLoopController : MonoBehaviour
         var selectedNames = new System.Collections.Generic.List<string>();
         foreach (var selectedPolitician in GameSession.State.SelectedPolitikus)
         {
-            var politician = selectedPolitician as PolitikusData;
+            var politician = selectedPolitician;
             if (politician != null) selectedNames.Add(politician.displayName);
         }
         politicalRepresentativesText.text = "Politikus aktif:\n" + (selectedNames.Count == 0 ? "-" : string.Join("\n", selectedNames));
@@ -383,11 +403,6 @@ public class PembangunanLoopController : MonoBehaviour
             connectionRequestStatusText.text = "Data politikus belum lengkap.";
             return;
         }
-        if (!(politicians[0] is PolitikusData) || !(politicians[1] is PolitikusData) || !(politicians[2] is PolitikusData))
-        {
-            connectionRequestStatusText.text = "Data politikus tidak valid.";
-            return;
-        }
         connectionRequestPending = true;
         connectionButton.interactable = false;
         connectionButton.GetComponentInChildren<Text>().text = "PENDING...";
@@ -405,6 +420,8 @@ public class PembangunanLoopController : MonoBehaviour
         connectionButton.interactable = true;
         connectionButton.GetComponentInChildren<Text>().text = lastConnectionRequestSucceeded ? "ACCEPTED" : "REJECTED";
         connectionRequestStatusText.text = lastConnectionRequestSucceeded ? "Request diterima." : "Request ditolak.";
+        if (lastConnectionRequestSucceeded) audioFeedback.PlaySuccess();
+        else audioFeedback.PlayFailure();
         if (lastConnectionRequestSucceeded)
         {
             GameSession.State.MarkGameWon();
@@ -422,25 +439,26 @@ public class PembangunanLoopController : MonoBehaviour
             politicalActionStatusText.text = "Request hanya 1x per periode.";
             return;
         }
-        var plant = GameSession.State.SelectedPembangkit as PembangkitData;
+        var plant = GameSession.State.SelectedPembangkit;
         if (plant == null || GameSession.State.SelectedPolitikus.Count != 3)
         {
             politicalActionStatusText.text = "Data pilihan belum lengkap.";
             return;
         }
-        if (!(GameSession.State.SelectedPolitikus[0] is PolitikusData) || !(GameSession.State.SelectedPolitikus[1] is PolitikusData) || !(GameSession.State.SelectedPolitikus[2] is PolitikusData)) return;
         lastBudgetRequestPeriod = period;
         var chance = SelectedStatsSystem.LobbyChance(GameSession.State, tier);
         var percentage = tier == 0 ? SmallRequestPercent : tier == 1 ? MediumRequestPercent : LargeRequestPercent;
         var amount = Mathf.RoundToInt(plant.biayaDipilih * percentage);
         if (GameServices.Random.Roll(chance))
         {
+            audioFeedback.PlaySuccess();
             GameSession.State.Dana += amount;
             GameStateEvents.RaiseDanaChanged(GameSession.State.Dana);
             politicalActionStatusText.text = "Aksi berhasil — request " + (tier == 0 ? "Sedikit" : tier == 1 ? "Sedang" : "Banyak") + ": +" + amount.ToString("N0") + " Gajayan (" + Mathf.RoundToInt(chance) + "%).";
         }
         else
         {
+            audioFeedback.PlayFailure();
             politicalActionStatusText.text = "Aksi gagal — request ditolak (peluang " + Mathf.RoundToInt(chance) + "%).";
         }
     }

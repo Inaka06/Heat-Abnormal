@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EventAlamData
   id: Ev. Alam 1
   namaEvent: Gempa Bumi
-  narasi: 'TODO: Salin narasi verbatim dari dokumen sumber asli.'
+  narasi: Terjadi gempa bumi dahsyat dengan tingkat kekuatan 6-7 SR!
   baseDamageMin: 3
   baseDamageMax: 5
   isInstantGameOver: 0

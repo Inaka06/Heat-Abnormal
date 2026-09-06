@@ -24,5 +24,6 @@ public class EventRakyatData : ScriptableObject
         public int waktuPembangunanMin;
         public int waktuPembangunanMax;
         public bool isInstantGameOver;
+        public GameOverReason gameOverReason;
     }
 }

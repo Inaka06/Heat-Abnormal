@@ -17,4 +17,4 @@ MonoBehaviour:
   biayaDipilih: 250000
   biayaSisa: 100000
   baseLamaPeriode: 12
-  icon: {fileID: 0}
+  icon: {fileID: 1838187307763287030, guid: 202d9014ef5d5ea46b066b662d81c258, type: 2}

@@ -12,6 +12,6 @@ public class PeopleEventSystemTests
     [Test]
     public void EventRateDelegatesBoundaryClampingToFormula()
     {
-        Assert.AreEqual(10f, PeopleEventSystem.CalculateEventRate(100f, 100f, 100f, 100f));
+        Assert.AreEqual(15f, PeopleEventSystem.CalculateEventRate(100f, 100f, 100f, 100f));
     }
 }

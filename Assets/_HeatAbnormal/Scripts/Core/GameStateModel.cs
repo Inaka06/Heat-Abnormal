@@ -22,22 +22,23 @@ public sealed class GameStateModel
     public int KepuasanRakyat { get; set; } = InitialKepuasanRakyat;
     public int KekuatanPolitik { get; set; } = InitialKekuatanPolitik;
     public float ProgressPembangunanPeriode { get; set; }
-    public object SelectedPembangkit { get; set; }
-    public object SelectedKontraktor { get; set; }
-    public List<object> SelectedPolitikus { get; } = new List<object>(MaxSelectedPolitikus);
+    public int PeriodeTerpakai { get; set; }
+    public PembangkitData SelectedPembangkit { get; set; }
+    public KontraktorData SelectedKontraktor { get; set; }
+    public List<PolitikusData> SelectedPolitikus { get; } = new List<PolitikusData>(MaxSelectedPolitikus);
     public int PeriodeDanaKosongBerturut { get; set; }
     public bool IsGameOver { get; private set; }
     public GameOverReason GameOverReason { get; private set; } = GameOverReason.None;
     public bool IsGameWon { get; private set; }
 
-    public bool SetSelectedPolitikus(IEnumerable<object> politikus)
+    public bool SetSelectedPolitikus(IEnumerable<PolitikusData> politikus)
     {
         if (politikus == null)
         {
             return false;
         }
 
-        var selected = new List<object>(politikus);
+        var selected = new List<PolitikusData>(politikus);
         if (selected.Count != MaxSelectedPolitikus)
         {
             return false;

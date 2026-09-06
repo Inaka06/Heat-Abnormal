@@ -309,7 +309,10 @@ PlayerSettings:
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
-  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 02000000
+    m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -696,7 +699,7 @@ PlayerSettings:
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Heat Abnormal 2026-09-02_12-47-08
-  organizationId: inaka06
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -23,14 +23,14 @@ public class EndingWinController : MonoBehaviour
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         text.fontSize = 32; text.alignment = TextAnchor.MiddleCenter; text.color = Color.white;
         var state = GameSession.State;
-        var plant = state.SelectedPembangkit as PembangkitData;
-        var contractor = state.SelectedKontraktor as KontraktorData;
-        var politicians = string.Join(", ", state.SelectedPolitikus.ConvertAll(p => (p as PolitikusData)?.displayName ?? "Unknown"));
+        var plant = state.SelectedPembangkit;
+        var contractor = state.SelectedKontraktor;
+        var politicians = string.Join(", ", state.SelectedPolitikus.ConvertAll(p => p == null ? "Unknown" : p.displayName));
         text.text = "PENYAMBUNGAN BERHASIL\n\n" +
             "Pembangkit: " + (plant == null ? "-" : plant.displayName) + "\n" +
             "Kontraktor: " + (contractor == null ? "-" : contractor.displayName) + "\n" +
             "Politikus: " + politicians + "\n" +
-            "Periode terpakai: " + state.ProgressPembangunanPeriode.ToString("0.##") + "\n" +
+            "Periode terpakai: " + state.PeriodeTerpakai + "\n" +
             "Dana akhir: " + state.Dana.ToString("N0") + " Gajayan";
         CreateButton(canvas.transform, "PlayAgain", "Main Lagi", new Vector2(.25f, .16f), new Vector2(.48f, .26f), () => { GameSession.Reset(); SceneManager.LoadScene("MainMenu"); });
         CreateButton(canvas.transform, "Quit", "Keluar", new Vector2(.52f, .16f), new Vector2(.75f, .26f), QuitGame);

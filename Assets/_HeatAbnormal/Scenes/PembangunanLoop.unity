@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 224249975}
   - component: {fileID: 224249976}
   - component: {fileID: 224249977}
+  - component: {fileID: 224249978}
   m_Layer: 0
   m_Name: PembangunanLoopController
   m_TagString: Untagged
@@ -237,7 +238,7 @@ MonoBehaviour:
   gameClock: {fileID: 1369079626}
   naturalEventSystem: {fileID: 224249975}
   peopleEventSystem: {fileID: 224249976}
-  budgetOverrunSystem: {fileID: 0}
+  budgetOverrunSystem: {fileID: 224249977}
 --- !u!4 &224249974
 Transform:
   m_ObjectHideFlags: 0
@@ -296,6 +297,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BudgetOverrunSystem
   gameClock: {fileID: 1369079626}
+--- !u!114 &224249978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224249972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47f73841c738e54ebc3372588099420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PeriodResolutionSystem
+  gameClock: {fileID: 1369079626}
+  naturalEventSystem: {fileID: 224249975}
+  peopleEventSystem: {fileID: 224249976}
+  budgetOverrunSystem: {fileID: 224249977}
+  loopController: {fileID: 224249973}
 --- !u!1 &1369079625
 GameObject:
   m_ObjectHideFlags: 0

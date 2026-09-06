@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Ev_Rakyat_3
   m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
   id: Ev. Rakyat 3
-  narasiPembuka: Event rakyat 3 terjadi di Nagajaya.
+  narasiPembuka: Belakangan ini, muncul sebuah pembahasan panas mengenai Pembangkit
+    Listrik Tenaga Surya dan keefektifannya.
   ragamList:
-  - dialogText: Bangun PLTS dengan membuka sebagian hutan.
-    aftermathText: Warga terbiasa bertetangga dengan hewan.
+  - dialogText: "\u201CJelas-jelas efektif! Apalagi, kita berada di garis khatulistiwa,
+      yang berarti kita pasti akan mendapatkan sinar matahari! Kita gundulkan saja
+      sedikit hutan, lalu kita pasangkan panel surya yang banyak!\u201D jawab Rufftop,
+      anggota komunitas Penggundulan Hutan Untuk Surya."
+    aftermathText: Sudah waras bagi warga untuk bertetangga dengan sebuah hewan.
     satisfactoryMin: -8
     satisfactoryMax: 4
     kekuatanPolitikMin: 0
@@ -24,8 +28,12 @@ MonoBehaviour:
     waktuPembangunanMin: -2
     waktuPembangunanMax: -1
     isInstantGameOver: 0
-  - dialogText: Pasang panel surya di rumah warga.
-    aftermathText: Banyak gedung kesulitan menyediakan listrik.
+  - dialogText: "\u201CNggak masuk akal! Bagaimana dengan ekosistem yang ada di sana?
+      Seharusnya, kita pasang saja di rumah-rumah warga. Tiap warga mendapatkan panel
+      surya seluas atapnya\u201D balas Forrest, anggota Kontra Penggundulan Hutan
+      Untuk Surya."
+    aftermathText: Banyak apartemen dan gedung tinggi kesulitan untuk menyediakan
+      listrik.
     satisfactoryMin: 3
     satisfactoryMax: 10
     kekuatanPolitikMin: 0
@@ -33,8 +41,11 @@ MonoBehaviour:
     waktuPembangunanMin: 1
     waktuPembangunanMax: 2
     isInstantGameOver: 0
-  - dialogText: Lanjutkan eksploitasi minyak.
-    aftermathText: Setiap jengkal tanah diisi tambang minyak.
+  - dialogText: "\u201CTidakkah kalian tahu bahwa panel surya memerlukan kita untuk
+      mengeruk hasil bumi?\u201D ucap Petroman di kanal MeTube miliknya, \u201CTanah
+      ini berlimpah dengan minyak. Bagaimana dengan menghentikan proyek surya omong
+      kosong ini dan melanjutkan pembangkit listrik yang sudah ada?\u201D"
+    aftermathText: Setiap jengkal tanah diisi oleh tambang minyak.
     satisfactoryMin: -4
     satisfactoryMax: 3
     kekuatanPolitikMin: 0

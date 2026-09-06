@@ -56,8 +56,13 @@ public class PembangkitSelectController : MonoBehaviour
         card.transform.SetParent(parent, false);
         card.GetComponent<Image>().color = new Color(.12f, .2f, .28f);
         card.GetComponent<Button>().onClick.AddListener(() => RequestSelection(plant));
-        CreateText(card.transform, "Name", plant.displayName, 30, new Vector2(.05f, .7f), new Vector2(.95f, .95f));
-        CreateText(card.transform, "Cost", "Biaya: " + plant.biayaDipilih.ToString("N0") + " Gj", 22, new Vector2(.05f, .48f), new Vector2(.95f, .68f));
+        var iconObject = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+        iconObject.transform.SetParent(card.transform, false);
+        var iconRect = iconObject.GetComponent<RectTransform>(); iconRect.anchorMin = new Vector2(.25f, .52f); iconRect.anchorMax = new Vector2(.75f, .72f); iconRect.offsetMin = iconRect.offsetMax = Vector2.zero;
+        iconObject.GetComponent<Image>().sprite = plant.icon;
+        iconObject.GetComponent<Image>().preserveAspect = true;
+        CreateText(card.transform, "Name", plant.displayName, 30, new Vector2(.05f, .78f), new Vector2(.95f, .95f));
+        CreateText(card.transform, "Cost", "Biaya: " + plant.biayaDipilih.ToString("N0") + " Gj", 22, new Vector2(.05f, .38f), new Vector2(.95f, .50f));
         CreateText(card.transform, "Remaining", "Sisa proyek: " + plant.biayaSisa.ToString("N0") + " Gj", 20, new Vector2(.05f, .28f), new Vector2(.95f, .46f));
         CreateText(card.transform, "Duration", "Durasi: " + plant.baseLamaPeriode + " periode", 20, new Vector2(.05f, .08f), new Vector2(.95f, .26f));
     }

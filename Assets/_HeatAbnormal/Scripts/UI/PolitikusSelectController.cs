@@ -65,7 +65,7 @@ public class PolitikusSelectController : MonoBehaviour
 
     private void ConfirmSelection()
     {
-        if (selected.Count != 3 || !GameSession.State.SetSelectedPolitikus(new List<object> { selected[0], selected[1], selected[2] })) return;
+        if (selected.Count != 3 || !GameSession.State.SetSelectedPolitikus(new List<PolitikusData> { selected[0], selected[1], selected[2] })) return;
         GameSession.State.KekuatanPolitik = 0;
         SceneManager.LoadScene("PembangunanLoop");
     }

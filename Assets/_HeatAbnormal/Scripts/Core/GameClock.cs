@@ -21,7 +21,7 @@ public sealed class GameClock : MonoBehaviour
 
     public int CurrentPeriodCount { get; private set; }
     public bool IsPaused => isPaused;
-    public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = Mathf.Clamp(value, 1f, 3f); }
+    public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = Mathf.Clamp(value, 1f, 9f); }
     public float SecondsUntilNextPeriod => Mathf.Max(0f, periodDurationSeconds - elapsedSeconds);
 
     private void Update()
@@ -32,9 +32,12 @@ public sealed class GameClock : MonoBehaviour
         }
 
         elapsedSeconds += Time.deltaTime * speedMultiplier;
-        while (elapsedSeconds >= periodDurationSeconds)
+        // Resolve at most one period per frame. Any excess accumulated time is
+        // intentionally discarded so event resolution can finish before the
+        // next period is emitted.
+        if (elapsedSeconds >= periodDurationSeconds)
         {
-            elapsedSeconds -= periodDurationSeconds;
+            elapsedSeconds = 0f;
             CurrentPeriodCount++;
             OnPeriodElapsed?.Invoke();
         }

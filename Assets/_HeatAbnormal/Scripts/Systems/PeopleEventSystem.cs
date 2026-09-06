@@ -14,28 +14,18 @@ public class PeopleEventSystem : MonoBehaviour
         if (registry == null) Debug.LogError("PeopleEventSystem requires a GameDataRegistry reference.");
     }
 
-    private void OnEnable()
+    public EventRakyatData TryTriggerEvent()
     {
-        if (gameClock != null) gameClock.OnPeriodElapsed += HandlePeriodElapsed;
-    }
-
-    private void OnDisable()
-    {
-        if (gameClock != null) gameClock.OnPeriodElapsed -= HandlePeriodElapsed;
-    }
-
-    private void HandlePeriodElapsed()
-    {
-        var contractor = GameSession.State.SelectedKontraktor as KontraktorData;
+        var contractor = GameSession.State.SelectedKontraktor;
         var politicians = GameSession.State.SelectedPolitikus;
-        if (contractor == null || politicians == null || politicians.Count != 3) return;
-        var first = politicians[0] as PolitikusData; var second = politicians[1] as PolitikusData; var third = politicians[2] as PolitikusData;
-        if (first == null || second == null || third == null) return;
+        if (contractor == null || politicians == null || politicians.Count != 3) return null;
+        var first = politicians[0]; var second = politicians[1]; var third = politicians[2];
+        if (first == null || second == null || third == null) return null;
         var chance = CalculateEventRate(contractor.keselamatanKerja, first.kepercayaanPublik, second.kepercayaanPublik, third.kepercayaanPublik);
-        if (!GameServices.Random.Roll(chance) || registry == null || registry.eventRakyatList.Count == 0) return;
+        if (!GameServices.Random.Roll(chance) || registry == null || registry.eventRakyatList.Count == 0) return null;
         var index = GameServices.Random.NextInt(0, registry.eventRakyatList.Count);
         var eventData = registry.eventRakyatList[index];
-        if (eventData != null) OnPeopleEventTriggered?.Invoke(eventData);
+        return eventData;
     }
 
     public static float CalculateEventRate(float safety, float publicTrust1, float publicTrust2, float publicTrust3)

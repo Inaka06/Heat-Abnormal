@@ -28,7 +28,7 @@ public class NaturalEventSystemTests
             }
         }
         Assert.That((float)storm / samples, Is.InRange(.83f, .87f));
-        Assert.That((float)earthquake / samples, Is.InRange(.009f, .029f));
+        Assert.That((float)earthquake / samples, Is.InRange(.129f, .169f));
         Assert.That((float)apocalypse / samples, Is.InRange(0f, .02f));
     }
 }

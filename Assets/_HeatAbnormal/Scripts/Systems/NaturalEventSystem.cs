@@ -22,22 +22,12 @@ public class NaturalEventSystem : MonoBehaviour
         if (registry == null) Debug.LogError("NaturalEventSystem requires a GameDataRegistry reference.");
     }
 
-    private void OnEnable()
+    public EventAlamData TryTriggerEvent()
     {
-        if (gameClock != null) gameClock.OnPeriodElapsed += HandlePeriodElapsed;
-    }
-
-    private void OnDisable()
-    {
-        if (gameClock != null) gameClock.OnPeriodElapsed -= HandlePeriodElapsed;
-    }
-
-    private void HandlePeriodElapsed()
-    {
-        if (!GameServices.Random.Roll(eventChancePercent)) return;
+        if (!GameServices.Random.Roll(eventChancePercent)) return null;
         var type = DetermineEventType(GameServices.Random.NextFloat(0f, 100f));
         var eventData = FindEvent(type);
-        if (eventData != null) OnNaturalEventTriggered?.Invoke(eventData);
+        return eventData;
     }
 
     public static NaturalEventType DetermineEventType(float roll)

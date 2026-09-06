@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EventAlamData
   id: Ev. Alam 3
   namaEvent: Kiamat
-  narasi: 'TODO: Salin narasi verbatim dari dokumen sumber asli.'
+  narasi: METEOR JATUH BERHAMBURAN! MATAHARI MELEDAK! MARS MENABRAK BULAN! LARI!
+    SELAMATKAN DIRI!
   baseDamageMin: 0
   baseDamageMax: 0
   isInstantGameOver: 1

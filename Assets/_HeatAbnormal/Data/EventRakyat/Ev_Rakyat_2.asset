@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Ev_Rakyat_2
   m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
   id: Ev. Rakyat 2
-  narasiPembuka: Event rakyat 2 terjadi di Nagajaya.
+  narasiPembuka: Belakangan ini, muncul sebuah pembahasan panas mengenai Pembangkit
+    Listrik Tenaga Nuklir (PLTN) dan berbagai risikonya.
   ragamList:
-  - dialogText: Dukung PLTN sebagai pembangkit bersih.
-    aftermathText: Setiap desa memiliki PLTN sendiri.
+  - dialogText: "\u201CPembangkit Listrik Tenaga Nuklir adalah salah satu pembangkit
+      listrik tenaga bersih yang harus kita dukung! Apalagi, kita adalah wilayah
+      yang memiliki permintaan listrik besar!\u201D kata Atomann, anggota komunitas
+      Nuklir Untuk Nagajaya"
+    aftermathText: Setiap desa memiliki PLTN nya sendiri.
     satisfactoryMin: -3
     satisfactoryMax: 3
     kekuatanPolitikMin: 0
@@ -24,8 +28,12 @@ MonoBehaviour:
     waktuPembangunanMin: -1
     waktuPembangunanMax: 1
     isInstantGameOver: 0
-  - dialogText: Tolak PLTN karena risiko kecelakaan nuklir.
-    aftermathText: Rakyat menggeneralisasi sebagian kecil data.
+    gameOverReason: 0
+  - dialogText: "\u201CYang benar saja!\u201D balas Rawon, \u201CKita bisa melihat
+      kejadian di Chernobi dan Fakushima, jelas-jelas nuklir adalah pembangkit listrik
+      yang berbahaya!\u201D lanjut anggota Skeptis Nuklir Untuk Nagajaya."
+    aftermathText: Rakyat menjadi terbiasa menganggap sebagian kecil dari data sebagai
+      representasi semua data.
     satisfactoryMin: 4
     satisfactoryMax: 12
     kekuatanPolitikMin: 0
@@ -33,7 +41,12 @@ MonoBehaviour:
     waktuPembangunanMin: 2
     waktuPembangunanMax: 4
     isInstantGameOver: 0
-  - dialogText: Kembali ke batu bara demi keamanan rakyat.
+    gameOverReason: 0
+  - dialogText: "\u201CSudah, sudah! Menurut saya, yang terbaik adalah pembangkit
+      listrik tenaga batu bara! Dengan kembali ke Pembangkit Listrik Tenaga Batu
+      Bara, maka kita dapat meningkatkan harga saham- eh maksud saya meningkatkan
+      keamanan rakyat!\u201D ucap Coalberg, anggota senior dari Koalisi Investor
+      Batu Bara"
     aftermathText: Batu bara menjadi makanan sehari-hari rakyat.
     satisfactoryMin: 0
     satisfactoryMax: 0
@@ -42,3 +55,4 @@ MonoBehaviour:
     waktuPembangunanMin: 0
     waktuPembangunanMax: 0
     isInstantGameOver: 1
+    gameOverReason: 3

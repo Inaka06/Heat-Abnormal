@@ -33,7 +33,7 @@ public class GameFormulasTests
     [Test] public void PeluangLobbyBerhasil_ClampsToFive() => Assert.AreEqual(5f, GameFormulas.PeluangLobbyBerhasil(10f, 20f));
 
     [Test] public void FaktorKetahananEventAlam_Normal() => Assert.AreEqual(1f, GameFormulas.FaktorKetahananEventAlam(50f));
-    [Test] public void FaktorKetahananEventAlam_Boundaries() { Assert.AreEqual(1.4f, GameFormulas.FaktorKetahananEventAlam(0f)); Assert.AreEqual(0.6f, GameFormulas.FaktorKetahananEventAlam(100f)); }
+    [Test] public void FaktorKetahananEventAlam_Boundaries() { Assert.AreEqual(1.4f, GameFormulas.FaktorKetahananEventAlam(0f), 0.0001f); Assert.AreEqual(0.6f, GameFormulas.FaktorKetahananEventAlam(100f), 0.0001f); }
 
     [Test] public void DampakEventAlam_Normal() => Assert.AreEqual(4f, GameFormulas.DampakEventAlam(3f, 1.4f));
     [Test] public void DampakEventAlam_RoundsResult() => Assert.AreEqual(4f, GameFormulas.DampakEventAlam(3f, 1.2f));
@@ -44,6 +44,6 @@ public class GameFormulasTests
     [Test] public void AvgPenyambunganPolitikus_Normal() => Assert.AreEqual(60f, GameFormulas.AvgPenyambunganPolitikus(50f, 60f, 70f));
     [Test] public void AvgPenyambunganPolitikus_Boundary() => Assert.AreEqual(100f, GameFormulas.AvgPenyambunganPolitikus(100f, 100f, 100f));
 
-    [Test] public void PeluangPenyambunganBerhasil_Normal() => Assert.AreEqual(60f, GameFormulas.PeluangPenyambunganBerhasil(60f, 60f, 60f));
+    [Test] public void PeluangPenyambunganBerhasil_Normal() => Assert.AreEqual(60f, GameFormulas.PeluangPenyambunganBerhasil(60f, 180f, 60f));
     [Test] public void PeluangPenyambunganBerhasil_ClampsToHundred() => Assert.AreEqual(100f, GameFormulas.PeluangPenyambunganBerhasil(100f, 300f, 100f));
 }

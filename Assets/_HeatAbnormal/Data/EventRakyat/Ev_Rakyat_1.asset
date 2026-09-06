@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Ev_Rakyat_1
   m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
   id: Ev. Rakyat 1
-  narasiPembuka: Event rakyat 1 terjadi di Nagajaya.
+  narasiPembuka: Telah terjadi sebuah kecelakaan kerja di tempat pembangunan pembangkit
+    listrik. Beberapa sumber tidak terverifikasi mengatakan bahwa K3 belum diterapkan
+    dengan baik di lokasi pembangunan.
   ragamList:
-  - dialogText: Normanfolk menuntut pertanggungjawaban kontraktor.
-    aftermathText: Keselamatan kerja menjadi sorotan publik.
+  - dialogText: "\u201CIni adalah permasalahan penting. Kita tidak bisa membiarkan
+      rakyat-rakyat kita dibiarkan mati begitu saja oleh kontraktor-kontraktor pelit
+      ini!\u201D ucap Normanfolk, ketua Serikat Seluruh Nagajaya"
+    aftermathText: Setiap kontraktor selalu dituduh pelit, menyebabkan rakyat untuk
+      bangun rumah sendiri dengan kualitas abal-abal.
     satisfactoryMin: 10
     satisfactoryMax: 18
     kekuatanPolitikMin: 0
@@ -24,8 +29,12 @@ MonoBehaviour:
     waktuPembangunanMin: 1
     waktuPembangunanMax: 2
     isInstantGameOver: 0
-  - dialogText: Rang Rich membantah tuduhan.
-    aftermathText: Perusahaan tetap dianggap dermawan setelah memangkas dana K3.
+    gameOverReason: 0
+  - dialogText: "\u201CJaga mulutmu!\u201D ucap Rang Rich, CEO dari perusahaan kontraktor,
+      \u201CKami itu perusahaan kaya, tidak mungkin kami pelit di bagian K3 yang
+      harganya tidak seberapa!\u201D"
+    aftermathText: Perusahaan kontraktor tetap dibilang dermawan setelah memotong
+      90% dana untuk K3.
     satisfactoryMin: -18
     satisfactoryMax: -10
     kekuatanPolitikMin: 0
@@ -33,8 +42,11 @@ MonoBehaviour:
     waktuPembangunanMin: 0
     waktuPembangunanMax: 0
     isInstantGameOver: 0
-  - dialogText: Workman bersaksi bahwa peralatan keamanan ditolak mandor.
-    aftermathText: Aftermath pilihan diterapkan.
+    gameOverReason: 0
+  - dialogText: "Workman menghadang kamera dari sebuah media massa, \u201CKami ada
+      sendiri di tempat kejadian! Mandor yang ada jelas-jelas menolak untuk memberikan
+      peralatan keamanan yang cukup!\u201D"
+    aftermathText: Pernyataan saksi cukup untuk menguji kebenaran dari suatu tuduhan
     satisfactoryMin: 8
     satisfactoryMax: 15
     kekuatanPolitikMin: 0
@@ -42,8 +54,11 @@ MonoBehaviour:
     waktuPembangunanMin: 2
     waktuPembangunanMax: 3
     isInstantGameOver: 0
-  - dialogText: Pemilik saham membantah dan menyebut kontraktor lolos audit.
-    aftermathText: Aftermath pilihan diterapkan.
+    gameOverReason: 0
+  - dialogText: "\u201CBah, omong kosong!\u201D ucap Oli Gar Key, pemilik saham kontraktor.
+      \u201CSudah jelas bahwa para kontraktor lolos audit, tidak mungkin kita tidak
+      melaksanakan prosedur K3 dengan baik!\u201D"
+    aftermathText: Perusahaan kontraktor berbondong-bondong menyogok auditor.
     satisfactoryMin: -25
     satisfactoryMax: -15
     kekuatanPolitikMin: 0
@@ -51,8 +66,12 @@ MonoBehaviour:
     waktuPembangunanMin: -1
     waktuPembangunanMax: 0
     isInstantGameOver: 0
-  - dialogText: Politikus berjanji mendatangi pihak bertanggung jawab sambil berkampanye.
-    aftermathText: Aftermath pilihan diterapkan.
+    gameOverReason: 0
+  - dialogText: "\u201CIni adalah masalah serius bagi bangsa kita! Saya secara personal
+      akan mendatangi pihak yang bertanggung jawab atas kejadian ini!\u201D seru
+      Geroy Afternoon, politikus Partai Mungkin Bersama Rakyat. \u201COh iya, jangan
+      lupa pilih saya di pemilu yang mendatang!\u201D"
+    aftermathText: Setiap perdebatan pasti selalu diikuti oleh kampanye.
     satisfactoryMin: 3
     satisfactoryMax: 8
     kekuatanPolitikMin: 3
@@ -60,8 +79,12 @@ MonoBehaviour:
     waktuPembangunanMin: 1
     waktuPembangunanMax: 2
     isInstantGameOver: 0
-  - dialogText: Analis independen mengecilkan masalah dan menjual saham.
-    aftermathText: Aftermath pilihan diterapkan.
+    gameOverReason: 0
+  - dialogText: "\u201CIni bukan masalah serius, HeHeHe\u2026 Saya yakin itu murni
+      adalah kesalahan pekerja\u2026\u201D kata Richman, sebuah analis independen
+      keselamatan di pekerjaan. \u201CYaudah itu dulu ya, HeHe\u2026 saya mau jual
+      saham kontraktor, HeHe\u2026\u201D."
+    aftermathText: Tidak ada yang memercayai pernyataan pekerja
     satisfactoryMin: -12
     satisfactoryMax: -6
     kekuatanPolitikMin: 0
@@ -69,3 +92,4 @@ MonoBehaviour:
     waktuPembangunanMin: -1
     waktuPembangunanMax: 0
     isInstantGameOver: 0
+    gameOverReason: 0

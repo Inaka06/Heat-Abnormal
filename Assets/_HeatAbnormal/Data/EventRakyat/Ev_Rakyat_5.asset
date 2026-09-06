@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Ev_Rakyat_5
   m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
   id: Ev. Rakyat 5
-  narasiPembuka: Event rakyat 5 terjadi di Nagajaya.
+  narasiPembuka: Belakangan ini, muncul sebuah pembahasan panas mengenai Pembangkit
+    Listrik Tenaga Bayu dan dampaknya terhadap burung yang terbang melalui tempat
+    dibangunnya PLTB.
   ragamList:
-  - dialogText: Hentikan proyek demi melindungi burung.
-    aftermathText: Pesawat dilarang terbang di atas Nagajaya.
+  - dialogText: "\u201CSering sekali burung-burung menjadi korban dari keserakahan
+      manusia\u2026 baling-baling besar yang memutar tinggi bisa membunuh burung-burung
+      ini! Sebaiknya, diberhentikan saja proyek ini.\u201D kata Flyguy, pegiat burung
+      dan anggota Kicau Untuk Nagajaya"
+    aftermathText: Pesawat terbang benar-benar dilarang di atas langit Nagajaya demi
+      keselamatan burung.
     satisfactoryMin: 7
     satisfactoryMax: 15
     kekuatanPolitikMin: 0
@@ -24,8 +30,13 @@ MonoBehaviour:
     waktuPembangunanMin: 2
     waktuPembangunanMax: 4
     isInstantGameOver: 0
-  - dialogText: Hentikan proyek dan beralih ke gas alam.
-    aftermathText: Semua aspek kehidupan menggunakan gas alam.
+    gameOverReason: 0
+  - dialogText: "\u201CHaHaHa\u2026 benar sekali saudara ini\u201D kata Simula, taipan
+      kaya pemilik Perusahaan Gas Bukan Milik Negara, sambil merangkul Flyguy. \u201CTetangga
+      kita bersedia menjual gas alam dengan harga yang murah ke kita, HaHaHa\u2026
+      cukup berikan saya kekuasaan di Perusahaan Listrik Nagajaya dan hentikan proyek
+      ini, HaHaHa\u2026\u201D"
+    aftermathText: Setiap aspek kehidupan kini menggunakan gas alam.
     satisfactoryMin: 0
     satisfactoryMax: 0
     kekuatanPolitikMin: 0
@@ -33,8 +44,10 @@ MonoBehaviour:
     waktuPembangunanMin: 0
     waktuPembangunanMax: 0
     isInstantGameOver: 1
-  - dialogText: Burung harus berevolusi mengikuti manusia.
-    aftermathText: Ayam menjadi satu-satunya unggas yang hidup.
+    gameOverReason: 4
+  - dialogText: "\u201CSiapa peduli dengan burung-burung itu? Mereka bisa berevolusi
+      mengikuti kita, bukan?\u201D ucap sebuah modernis yang namanya anonim."
+    aftermathText: Ayam kini menjadi satu-satunya spesies unggas yang masih hidup.
     satisfactoryMin: -14
     satisfactoryMax: -6
     kekuatanPolitikMin: 0
@@ -42,3 +55,4 @@ MonoBehaviour:
     waktuPembangunanMin: -1
     waktuPembangunanMax: 0
     isInstantGameOver: 0
+    gameOverReason: 0

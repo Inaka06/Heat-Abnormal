@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using UnityEngine;
 
 public class GameStateModelTests
 {
@@ -19,9 +20,21 @@ public class GameStateModelTests
     public void PoliticianSelectionRequiresExactlyThree()
     {
         var state = new GameStateModel();
+        var first = ScriptableObject.CreateInstance<PolitikusData>();
+        var second = ScriptableObject.CreateInstance<PolitikusData>();
+        var third = ScriptableObject.CreateInstance<PolitikusData>();
 
-        Assert.IsFalse(state.SetSelectedPolitikus(new object[] { new object(), new object() }));
-        Assert.IsTrue(state.SetSelectedPolitikus(new object[] { new object(), new object(), new object() }));
-        Assert.AreEqual(3, state.SelectedPolitikus.Count);
+        try
+        {
+            Assert.IsFalse(state.SetSelectedPolitikus(new PolitikusData[] { first, second }));
+            Assert.IsTrue(state.SetSelectedPolitikus(new PolitikusData[] { first, second, third }));
+            Assert.AreEqual(3, state.SelectedPolitikus.Count);
+        }
+        finally
+        {
+            Object.DestroyImmediate(first);
+            Object.DestroyImmediate(second);
+            Object.DestroyImmediate(third);
+        }
     }
 }

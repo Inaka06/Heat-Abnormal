@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Ev_Rakyat_4
   m_EditorClassIdentifier: Assembly-CSharp::EventRakyatData
   id: Ev. Rakyat 4
-  narasiPembuka: Event rakyat 4 terjadi di Nagajaya.
+  narasiPembuka: Belakangan ini, muncul sebuah pembahasan panas mengenai Pembangkit
+    Listrik Tenaga Air dan dampaknya terhadap masyarakat yang tinggal di tepi sungai.
   ragamList:
-  - dialogText: Pertimbangkan kembali pembangunan waduk.
-    aftermathText: Alasan tinggal turun-temurun dipakai menolak pembangunan.
+  - dialogText: "\u201CKami masyarakat tepi sungai sudah bertahun-tahun hidup disini!
+      Buyut saya, kakek saya, ibu saya, saya, dan anak saya semua hidup disini! Kami
+      meminta pemerintah untuk mempertimbangkan lagi pembangunan waduk!\u201D seru
+      John Fisher, penduduk desa Waterfront."
+    aftermathText: Sekelompok peserta kemah bisa menolak pembangunan dengan asas
+      keluarga mereka sudah dari dahulu sering berkemah di sana
     satisfactoryMin: 8
     satisfactoryMax: 16
     kekuatanPolitikMin: 0
@@ -24,8 +29,11 @@ MonoBehaviour:
     waktuPembangunanMin: 2
     waktuPembangunanMax: 4
     isInstantGameOver: 0
-  - dialogText: Warga harus beradaptasi dengan pemindahan.
-    aftermathText: Rakyat terbiasa memakai metafora yang tidak berhubungan.
+  - dialogText: "\u201CSaya juga pernah diusir, namun saya tidak mengeluh dan malah
+      beradaptasi!\u201D kata Rigorand, rakyat biasa yang pernah diusir dari mansion
+      orang tuanya karena tidak mau mandi, kini tinggal di apartemen mewah."
+    aftermathText: Rakyat terbiasa menggunakan metafora yang tidak ada hubungannya
+      sama sekali
     satisfactoryMin: -12
     satisfactoryMax: -5
     kekuatanPolitikMin: 0

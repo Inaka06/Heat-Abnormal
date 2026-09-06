@@ -382,11 +382,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Nagajaya adalah sebuah metropolitan yang sedang menghadapi krisis energi
-    dan kesehatan.
-
-
-    Masa depan kota ini berada di tanganmu.'
+  m_Text: Nagajaya merupakan sebuah metropolitan dengan banyak penduduk. Sayangnya,
+    banyak dari penduduknya mengidap berbagai penyakit yang disebabkan oleh adanya
+    pembangkit listrik bertenaga kotor. Kamu, sebagai Komisi Perusahaan Listrik Cabang
+    Nagajaya ditugaskan untuk menyelesaikan masalah tersebut. Setelah disepakati
+    parlemen, kamu diberikan dana awal sebanyak 350.000 Gajayan untuk menjalankan
+    proyek ini
 --- !u!222 &926089017
 CanvasRenderer:
   m_ObjectHideFlags: 0

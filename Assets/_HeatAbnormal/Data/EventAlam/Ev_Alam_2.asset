@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EventAlamData
   id: Ev. Alam 2
   namaEvent: Badai
-  narasi: 'TODO: Salin narasi verbatim dari dokumen sumber asli.'
+  narasi: Sebuah badai lebat melanda situs pembangunan
   baseDamageMin: 1
   baseDamageMax: 3
   isInstantGameOver: 0
