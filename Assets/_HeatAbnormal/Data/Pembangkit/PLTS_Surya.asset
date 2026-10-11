@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PembangkitData
   id: 2
   displayName: Surya
-  biayaDipilih: 175000
-  biayaSisa: 175000
+  biayaDipilih: 220000
+  biayaSisa: 130000
   baseLamaPeriode: 11
   icon: {fileID: -1787435805234700402, guid: d5fd84e36506af5469e40e47986a9dd9, type: 2}

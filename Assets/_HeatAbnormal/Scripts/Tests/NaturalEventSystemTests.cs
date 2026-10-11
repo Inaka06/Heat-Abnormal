@@ -8,8 +8,8 @@ public class NaturalEventSystemTests
         Assert.AreEqual(NaturalEventType.Badai, NaturalEventSystem.DetermineEventType(0f));
         Assert.AreEqual(NaturalEventType.Badai, NaturalEventSystem.DetermineEventType(84.99f));
         Assert.AreEqual(NaturalEventType.GempaBumi, NaturalEventSystem.DetermineEventType(85f));
-        Assert.AreEqual(NaturalEventType.GempaBumi, NaturalEventSystem.DetermineEventType(99.89f));
-        Assert.AreEqual(NaturalEventType.Kiamat, NaturalEventSystem.DetermineEventType(99.9f));
+        Assert.AreEqual(NaturalEventType.GempaBumi, NaturalEventSystem.DetermineEventType(99.98f));
+        Assert.AreEqual(NaturalEventType.Kiamat, NaturalEventSystem.DetermineEventType(99.99f));
     }
 
     [Test]

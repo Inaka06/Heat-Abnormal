@@ -15,6 +15,8 @@ public class EndingWinController : MonoBehaviour
         var scaler = canvasObject.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920f, 1080f);
+        CreateBackground(canvas.transform);
+        CreateResultFrame(canvas.transform);
         var textObject = new GameObject("WinMessage", typeof(RectTransform), typeof(Text));
         textObject.transform.SetParent(canvas.transform, false);
         var rect = textObject.GetComponent<RectTransform>();
@@ -43,6 +45,23 @@ public class EndingWinController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private static void CreateBackground(Transform parent)
+    {
+        var obj = new GameObject("KotaBackground", typeof(RectTransform), typeof(Image));
+        obj.transform.SetParent(parent, false);
+        var rect = obj.GetComponent<RectTransform>(); rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var image = obj.GetComponent<Image>(); image.sprite = Resources.Load<Sprite>("HeatAbnormal/Kota"); image.preserveAspect = false; image.raycastTarget = false;
+        obj.transform.SetAsFirstSibling();
+    }
+
+    private static void CreateResultFrame(Transform parent)
+    {
+        var obj = new GameObject("ResultFrame", typeof(RectTransform), typeof(Image)); obj.transform.SetParent(parent, false);
+        var rect = obj.GetComponent<RectTransform>(); rect.anchorMin = new Vector2(.08f, .24f); rect.anchorMax = new Vector2(.92f, .80f); rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var image = obj.GetComponent<Image>(); image.sprite = Resources.Load<Sprite>("HeatAbnormal/PixelFrame16x9RoundedNoTitle"); image.preserveAspect = false; image.color = new Color(.42f, .42f, .42f, .96f); image.raycastTarget = false;
+        obj.transform.SetSiblingIndex(1);
     }
 
     private static Button CreateButton(Transform parent, string name, string label, Vector2 min, Vector2 max, UnityEngine.Events.UnityAction action)

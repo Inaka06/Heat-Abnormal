@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class GameClock : MonoBehaviour
 {
     [SerializeField, Min(0.01f)]
-    private float periodDurationSeconds = 30f;
+    private float periodDurationSeconds = 300f;
 
     private float elapsedSeconds;
     private bool isPaused;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PembangkitData
   id: 1
   displayName: Angin
-  biayaDipilih: 150000
-  biayaSisa: 200000
+  biayaDipilih: 180000
+  biayaSisa: 170000
   baseLamaPeriode: 10
   icon: {fileID: 12667212101310481, guid: 57f826a8a63ae724fb590382e28c601a, type: 2}

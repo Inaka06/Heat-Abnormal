@@ -35,8 +35,8 @@ public class GameFormulasTests
     [Test] public void FaktorKetahananEventAlam_Normal() => Assert.AreEqual(1f, GameFormulas.FaktorKetahananEventAlam(50f));
     [Test] public void FaktorKetahananEventAlam_Boundaries() { Assert.AreEqual(1.4f, GameFormulas.FaktorKetahananEventAlam(0f), 0.0001f); Assert.AreEqual(0.6f, GameFormulas.FaktorKetahananEventAlam(100f), 0.0001f); }
 
-    [Test] public void DampakEventAlam_Normal() => Assert.AreEqual(4f, GameFormulas.DampakEventAlam(3f, 1.4f));
-    [Test] public void DampakEventAlam_RoundsResult() => Assert.AreEqual(4f, GameFormulas.DampakEventAlam(3f, 1.2f));
+    [Test] public void DampakRelatifEventAlam_Normal() => Assert.AreEqual(4.2f, GameFormulas.DampakRelatifEventAlam(3f, 1.4f), 0.0001f);
+    [Test] public void DampakRelatifEventAlam_ClampsToHundred() => Assert.AreEqual(100f, GameFormulas.DampakRelatifEventAlam(90f, 1.4f), 0.0001f);
 
     [Test] public void TingkatEventRakyat_Normal() => Assert.AreEqual(20f, GameFormulas.TingkatEventRakyat(100f, 50f));
     [Test] public void TingkatEventRakyat_ClampsToForty() => Assert.AreEqual(40f, GameFormulas.TingkatEventRakyat(0f, 0f));

@@ -11,6 +11,22 @@ public enum GameOverReason
     Other
 }
 
+public sealed class PeopleEventRecord
+{
+    public string EventName { get; set; }
+    public string EventDescription { get; set; }
+    public string Choice { get; set; }
+    public string Effects { get; set; }
+}
+
+public sealed class NaturalEventRecord
+{
+    public string EventName { get; set; }
+    public string EventDescription { get; set; }
+    public string Action { get; set; }
+    public string Effects { get; set; }
+}
+
 public sealed class GameStateModel
 {
     public const int InitialDana = 350000;
@@ -26,6 +42,8 @@ public sealed class GameStateModel
     public PembangkitData SelectedPembangkit { get; set; }
     public KontraktorData SelectedKontraktor { get; set; }
     public List<PolitikusData> SelectedPolitikus { get; } = new List<PolitikusData>(MaxSelectedPolitikus);
+    public List<PeopleEventRecord> PeopleEventHistory { get; } = new List<PeopleEventRecord>();
+    public List<NaturalEventRecord> NaturalEventHistory { get; } = new List<NaturalEventRecord>();
     public int PeriodeDanaKosongBerturut { get; set; }
     public bool IsGameOver { get; private set; }
     public GameOverReason GameOverReason { get; private set; } = GameOverReason.None;

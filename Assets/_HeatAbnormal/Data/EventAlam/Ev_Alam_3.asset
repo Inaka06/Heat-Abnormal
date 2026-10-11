@@ -16,6 +16,8 @@ MonoBehaviour:
   namaEvent: Kiamat
   narasi: METEOR JATUH BERHAMBURAN! MATAHARI MELEDAK! MARS MENABRAK BULAN! LARI!
     SELAMATKAN DIRI!
-  baseDamageMin: 0
-  baseDamageMax: 0
+  progressDamageMin: 0
+  progressDamageMax: 0
+  additionalPeriodsMin: 0
+  additionalPeriodsMax: 0
   isInstantGameOver: 1

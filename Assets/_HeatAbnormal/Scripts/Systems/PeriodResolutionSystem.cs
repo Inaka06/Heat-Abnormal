@@ -38,6 +38,7 @@ public class PeriodResolutionSystem : MonoBehaviour
         var natural = naturalEventSystem == null ? null : naturalEventSystem.TryTriggerEvent();
         if (natural != null)
         {
+            loopController.ResetSpeedToNormal();
             if (natural.isInstantGameOver) { loopController.ReceiveNaturalEvent(natural); resolving = false; return; }
             if (gameClock != null) gameClock.Pause();
             loopController.OnBlockingNaturalEventDismissed += ContinueAfterNatural;
@@ -59,7 +60,7 @@ public class PeriodResolutionSystem : MonoBehaviour
         var people = peopleEventSystem == null ? null : peopleEventSystem.TryTriggerEvent();
         if (people != null)
         {
-            if (gameClock != null) gameClock.Pause();
+            loopController.ResetSpeedToNormal();
             loopController.OnPeopleEventDismissed += ContinueAfterPeople;
             loopController.ReceivePeopleEvent(people);
             return;
@@ -76,7 +77,11 @@ public class PeriodResolutionSystem : MonoBehaviour
     private void FinishPeriod()
     {
         var overrun = budgetOverrunSystem == null ? (float?)null : budgetOverrunSystem.TryTriggerOverrun();
-        if (overrun.HasValue) loopController.ReceiveBudgetOverrun(overrun.Value);
+        if (overrun.HasValue)
+        {
+            loopController.ResetSpeedToNormal();
+            loopController.ReceiveBudgetOverrun(overrun.Value);
+        }
         loopController.AdvanceProgressOnly();
         resolving = false;
         if (!GameSession.State.IsGameOver && gameClock != null) gameClock.Resume();

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PembangkitData
   id: 0
   displayName: Air
-  biayaDipilih: 120000
-  biayaSisa: 230000
+  biayaDipilih: 135000
+  biayaSisa: 215000
   baseLamaPeriode: 9
   icon: {fileID: -2361508780659937550, guid: 6ffdc72c955eef74089f69478e27fc8a, type: 2}

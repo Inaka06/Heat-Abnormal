@@ -34,7 +34,7 @@ public class BudgetOverrunSystem : MonoBehaviour
         var cd = GameFormulas.PeluangPembengkakanDana(rd);
         if (!GameServices.Random.Roll(cd)) return null;
 
-        var rate = GameServices.Random.NextFloat(0.03f, 0.07f);
+        var rate = GameServices.Random.NextFloat(0.12f, 0.28f);
         var overrun = GameFormulas.BesarPembengkakanDana(plant.biayaDipilih, rate);
         var deduction = Mathf.Max(0, Mathf.RoundToInt(overrun));
         GameSession.State.Dana -= deduction;

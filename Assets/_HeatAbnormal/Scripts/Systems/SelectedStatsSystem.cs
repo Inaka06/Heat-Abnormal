@@ -11,6 +11,10 @@ public static class SelectedStatsSystem
     }
     public static float ConnectionChance(GameStateModel state)
     {
+        if (state == null || state.SelectedPolitikus == null || state.SelectedPolitikus.Count < 3)
+        {
+            return 0f;
+        }
         var p1 = state.SelectedPolitikus[0]; var p2 = state.SelectedPolitikus[1]; var p3 = state.SelectedPolitikus[2];
         return p1 == null || p2 == null || p3 == null ? 0f : GameFormulas.PeluangPenyambunganBerhasil(state.KepuasanRakyat, p1.lobby + p2.lobby + p3.lobby, GameFormulas.AvgPenyambunganPolitikus(p1.penyambungan, p2.penyambungan, p3.penyambungan));
     }
@@ -18,6 +22,9 @@ public static class SelectedStatsSystem
     {
         var p1 = state.SelectedPolitikus[0]; var p2 = state.SelectedPolitikus[1]; var p3 = state.SelectedPolitikus[2];
         if (p1 == null || p2 == null || p3 == null) return 0f;
-        return GameFormulas.PeluangLobbyBerhasil(GameFormulas.AvgLobbyPolitikus(p1.lobby, p2.lobby, p3.lobby), tier == 0 ? 0f : tier == 1 ? 10f : 20f);
+        // Make the risk/reward tiers meaningfully distinct: large requests are a
+        // desperate option rather than a second reliable source of money.
+        var penalty = tier == 0 ? 0f : tier == 1 ? 40f : 80f;
+        return GameFormulas.PeluangLobbyBerhasil(GameFormulas.AvgLobbyPolitikus(p1.lobby, p2.lobby, p3.lobby), penalty);
     }
 }

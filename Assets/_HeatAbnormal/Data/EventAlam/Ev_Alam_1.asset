@@ -15,6 +15,8 @@ MonoBehaviour:
   id: Ev. Alam 1
   namaEvent: Gempa Bumi
   narasi: Terjadi gempa bumi dahsyat dengan tingkat kekuatan 6-7 SR!
-  baseDamageMin: 3
-  baseDamageMax: 5
+  progressDamageMin: 18
+  progressDamageMax: 30
+  additionalPeriodsMin: 2
+  additionalPeriodsMax: 3
   isInstantGameOver: 0

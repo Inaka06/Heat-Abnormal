@@ -12,7 +12,7 @@ public class NaturalEventSystem : MonoBehaviour
 {
     [SerializeField] private GameClock gameClock;
     [SerializeField] private GameDataRegistry registry;
-    [SerializeField, Range(0f, 100f)] private float eventChancePercent = 30f;
+    [SerializeField, Range(0f, 100f)] private float eventChancePercent = 10f;
 
     public event Action<EventAlamData> OnNaturalEventTriggered;
 
@@ -33,7 +33,7 @@ public class NaturalEventSystem : MonoBehaviour
     public static NaturalEventType DetermineEventType(float roll)
     {
         if (roll < 85f) return NaturalEventType.Badai;
-        if (roll < 99.9f) return NaturalEventType.GempaBumi;
+        if (roll < 99.99f) return NaturalEventType.GempaBumi;
         return NaturalEventType.Kiamat;
     }
 

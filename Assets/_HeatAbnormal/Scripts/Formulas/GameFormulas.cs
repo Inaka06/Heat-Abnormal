@@ -68,10 +68,10 @@ public static class GameFormulas
         return 1.4f - (0.8f * (k / 100f));
     }
 
-    /// <summary>Calculates Ea = round(Ba * D).</summary>
-    public static float DampakEventAlam(float ba, float d)
+    /// <summary>Calculates relative natural-event progress damage after contractor resistance.</summary>
+    public static float DampakRelatifEventAlam(float baseDamagePercent, float resistanceFactor)
     {
-        return (float)Math.Round(ba * d, MidpointRounding.AwayFromZero);
+        return Clamp(baseDamagePercent * resistanceFactor, 0f, 100f);
     }
 
     /// <summary>Calculates eR = Clamp(20 + (100 - Ks) * 0.20 + (50 - T) * 0.10, 10, 40), in percent.</summary>
